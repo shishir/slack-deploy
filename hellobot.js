@@ -1,8 +1,20 @@
 module.exports = function(req, res, next) {
   var userName     = req.body.user_name;
-  var incomingText = req.body.text
+  var incomingText = req.body.text;
+  commands = incomingText.split(" ");
+  releaseBranchName = commands[1];
+
+  // for (var i = 2; i < commands.lenght; i++) {
+
+  // }
+  var megaText = "";
+  megaText = "git checkout master\n";
+  megaText += "git fetch origin\n";
+  megaText += "git checkout -t -b "+ releaseBranchName + " origin/master\n";
+
+
   var botPayload = {
-    text: 'Namaste, ' + incomingText + '!'
+    text: megaText
   };
 
   if (userName !== 'slackbot') {
