@@ -5,7 +5,7 @@ module.exports = function(req, res, next) {
   releaseBranchName = commands[1];
 
   var megaText = "```";
-  megaText = "git checkout master\n";
+  megaText += "git checkout master\n";
   megaText += "git fetch origin\n";
   megaText += "git checkout -t -b "+ releaseBranchName + " origin/master\n";
   megaText += "\n\n\n";
