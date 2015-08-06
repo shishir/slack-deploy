@@ -4,7 +4,7 @@ module.exports = function(req, res, next) {
   commands = incomingText.split(" ");
   releaseBranchName = commands[1];
 
-  var megaText = "";
+  var megaText = "```";
   megaText = "git checkout master\n";
   megaText += "git fetch origin\n";
   megaText += "git checkout -t -b "+ releaseBranchName + " origin/master\n";
@@ -17,7 +17,7 @@ module.exports = function(req, res, next) {
     branchCommand += "\n\n\n";
     megaText += branchCommand;
   }
-
+  megaText += "```"
   var botPayload = {
     text: megaText
   };
