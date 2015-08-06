@@ -2,7 +2,6 @@ module.exports = function(req, res, next) {
   var userName     = req.body.user_name;
   var incomingText = req.body.text;
   commands = incomingText.split(" ");
-  commands = "chuck foo bar baz".split(" ");
   releaseBranchName = commands[1];
 
   var megaText = "";
