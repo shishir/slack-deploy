@@ -1,7 +1,8 @@
 module.exports = function(req, res, next) {
-  var userName = req.body.user_name;
+  var userName     = req.body.user_name;
+  var incomingText = req.body.text
   var botPayload = {
-    text: 'Namaste, ' + userName + '!'
+    text: 'Namaste, ' + incomingText + '!'
   };
 
   if (userName !== 'slackbot') {
