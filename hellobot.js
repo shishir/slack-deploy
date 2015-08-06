@@ -3,7 +3,7 @@ module.exports = function(req, res, next) {
   var incomingText = req.body.text;
   commands = incomingText.split(" ");
   releaseBranchName = commands[1];
-
+  var newLine = "\n";
   var megaText = "```";
   megaText += "git checkout master\n";
   megaText += "git fetch origin\n";
@@ -17,6 +17,23 @@ module.exports = function(req, res, next) {
     branchCommand += "\n\n";
     megaText += branchCommand;
   }
+
+  for (var i = 2; i < commands.length; i++) {
+    var deleteCommand = "git push origin :" + commands[i] + "\n";
+    megaText += deleteCommand;
+  }
+  megaText+= "git push origin :" + releaseBranchName;
+
+  megaText += "git checkout master";
+  megaText += newLine;
+  megaText += "git pull --rebase";
+  megaText += newLine;
+  megaText += "git merge --no-ff --no-commit " + releaseBranchName;
+  megaText += newLine;
+  megaText += "git commit";
+  megaText += newLine;
+  megaText += "git push origin head";
+
   megaText += "```"
   var botPayload = {
     text: megaText
