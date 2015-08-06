@@ -22,8 +22,9 @@ module.exports = function(req, res, next) {
     var deleteCommand = "git push origin :" + commands[i] + "\n";
     megaText += deleteCommand;
   }
+  megaText += newLine;
   megaText+= "git push origin :" + releaseBranchName;
-
+  megaText += newLine;
   megaText += "git checkout master";
   megaText += newLine;
   megaText += "git pull --rebase";
