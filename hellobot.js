@@ -8,13 +8,13 @@ module.exports = function(req, res, next) {
   megaText += "git checkout master\n";
   megaText += "git fetch origin\n";
   megaText += "git checkout -t -b "+ releaseBranchName + " origin/master\n";
-  megaText += "\n\n\n";
+  megaText += "\n\n";
 
   for (var i = 2; i < commands.length; i++) {
     var branchCommand = "git checkout -t -b " + commands[i] + " origin/" + commands[i] + "\n";
     branchCommand += "git rebase "+ releaseBranchName + " " + commands[i] + "\n";
     branchCommand += "git rebase origin/"+ commands[i] + " " + releaseBranchName + "\n";
-    branchCommand += "\n\n\n";
+    branchCommand += "\n\n";
     megaText += branchCommand;
   }
   megaText += "```"
