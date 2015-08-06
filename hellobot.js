@@ -13,7 +13,7 @@ module.exports = function(req, res, next) {
   for (var i = 2; i < commands.length; i++) {
     var branchCommand = "git checkout -t -b " + commands[i] + " origin/" + commands[i] + "\n";
     branchCommand += "git rebase "+ releaseBranchName + " " + commands[i] + "\n";
-    branchCommand += "git rebase origin/"+ commands[i]; + " " + releaseBranchName + "\n";
+    branchCommand += "git rebase origin/"+ commands[i] + " " + releaseBranchName + "\n";
     branchCommand += "\n\n\n";
     megaText += branchCommand;
   }
